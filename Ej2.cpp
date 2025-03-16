@@ -54,11 +54,17 @@ ETIQUETAS make_enum_element(string severidad){
 int main(){
     string severidad;
     string msg;
-    cout << "Ingrese la etiqueta de severidad:" <<" ";
-    cin >> severidad;
+    bool valid = true;
+    ETIQUETAS enum_severidad;
+    while(valid){
+        
+        cout << "Ingrese la etiqueta de severidad:" <<" ";
+        cin >> severidad;
+        enum_severidad = make_enum_element(severidad);
+    }
     cout << "Ingrese el mensaje:" <<" ";
     cin >> msg;
-    logmessage(msg,make_enum_element(severidad));
+    logmessage(msg, enum_severidad);
 
     try{
         string a;
