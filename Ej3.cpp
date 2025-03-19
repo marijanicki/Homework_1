@@ -15,6 +15,11 @@ struct list_t{
     size_t size;
 };
 
+struct list_iter_t{
+    unique_ptr<list_t> list;
+    unique_ptr<node_t> curr;
+};
+
 unique_ptr<node_t> create_node(int value){
     //tengo que verificar que se haya creado el nodo?
     unique_ptr<node_t> new_node = make_unique<node_t>();
@@ -51,4 +56,38 @@ void push_back(int value, unique_ptr<list_t> list){
     }
     list->tail->next = move(new_node);
     list->tail = move(new_node);
+    list->size++;
+}
+
+unique_ptr<list_iter_t> list_iter_create_head(unique_ptr<list_t> list){
+    unique_ptr<list_iter_t> iter = make_unique<list_iter_t>();
+    iter->list = move(list);
+    iter->curr = move(list->head);
+    return move(iter);
+}
+
+unique_ptr<list_iter_t> list_iter_create_tail(unique_ptr<list_t> list){
+    unique_ptr<list_iter_t> iter = make_unique<list_iter_t>();
+    iter->list = move(list);
+    iter->curr = move(list->tail);
+    return move(iter);
+}
+
+bool list_iter_forward(unique_ptr<list_iter_t> iter){
+    if(list_is_empty(iter->list)||!iter->curr->next){return false;}
+    iter->curr = iter->curr->next;
+    return true;
+}
+
+
+
+bool insert(int pos, unique_ptr<list_t> list, int value){
+    unique_ptr<node_t> new_node = create_node(value);
+    if( pos > list->size){
+        list->tail->next = move(new_node);
+        list->tail = move(new_node);
+        return false;
+    }
+    
+    
 }
