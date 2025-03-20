@@ -1,0 +1,10 @@
+[SEGURIDAD]paz>
+[ERROR] <bue> Archivo:nose. Linea del error:4
+[ERROR] <Strings distintos!>
+[INFO] <hola>
+[ERROR] <upa>
+[ERROR] <a>
+[WARNING] <a>
+[SEGURIDAD]<nicki1006basado
+[ERROR] <Strings distintos!>
+[SEGURIDAD]<nicki1006>basado
