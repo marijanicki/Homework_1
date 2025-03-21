@@ -1,3 +1,5 @@
+#include "Ej1.h"
+
 #include <iostream>
 #include <vector>
 using namespace std;

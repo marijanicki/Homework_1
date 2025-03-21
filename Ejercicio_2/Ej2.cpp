@@ -6,7 +6,6 @@ using namespace std;
 
 
 enum class ETIQUETAS : uint8_t {ERROR,DEBUG, INFO, WARNING,CRITICAL, iNVALID};
-string enum_to_string(ETIQUETAS severidad);
 
 void logmessage(string msg, ETIQUETAS severidad){
 
