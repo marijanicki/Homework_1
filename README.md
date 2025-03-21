@@ -1,6 +1,7 @@
 # Homework_1
 
 Compilación Ejercicios:
+
 Ej1:
 g++ Ej1.cpp -Wall -g -o Ej1
 ./Ej1

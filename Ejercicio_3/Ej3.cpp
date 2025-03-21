@@ -1,3 +1,4 @@
+#include "Ej3.h"
 #include <iostream>
 #include <memory>
 
@@ -118,7 +119,7 @@ bool insert(int pos, shared_ptr<list_t> list, int value){
 
 bool erase(shared_ptr<list_t> list, int pos){
     if(list_is_empty(list)){return false;}
-    //en caso de que haya un unico nodo borro el head ya que tambein va a borrar el tail
+    //en caso de que haya un unico nodo borro el head ya que tambien va a borrar el tail
     if(static_cast<size_t>(pos) >= list->size){
         list_pop_tail(list);
         return false;
@@ -169,5 +170,4 @@ int main(){
     print_list(list);
     erase(list,0);
     print_list(list);
-
 } 

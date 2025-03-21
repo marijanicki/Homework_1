@@ -1,9 +1,8 @@
+#include "Ej2.h"
 #include <iostream>
 #include <fstream>
 
 using namespace std;
-
-
 
 enum class ETIQUETAS : uint8_t {ERROR,DEBUG, INFO, WARNING,CRITICAL, iNVALID};
 
@@ -73,7 +72,6 @@ string enum_to_string(ETIQUETAS severidad){
 
 int main(){
     int op;
-    
     string msg;
     char menu;
     bool inicio = true;
@@ -135,8 +133,7 @@ int main(){
             case 5:
                 return 0;
             default:
-                cout << "\nIngreso un comando inválido, intente nuevamente.\n";
-                
+                cout << "\nIngreso un comando inválido, intente nuevamente.\n";  
         }
         try{
             cout << "¿Desea realizar otra operación? Y/N\n";
@@ -154,8 +151,7 @@ int main(){
         }
         catch(const char* f){
             cout << f;
-        }
-            
+        }     
     }  
  
     return 0;
