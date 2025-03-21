@@ -50,28 +50,22 @@ int main(){
     auto startTime = chrono::high_resolution_clock::now();
     char word1[] = "Las olas del mar rompen suavemente en la orilla mientras la brisa acaricia la piel";
     char word2[] = "El sol se oculta lentamente detrás de las montañas, pintando el cielo con tonos anaranjados.";
-    print_result(compare(word1, word2, 0));
-    /*
-    if()){
-        cout<<"Ambos textos son iguales"<<endl;
-    }
-    else{
-        cout<<"Los textos son distintos"<<endl;
-    }*/
+    print_result(compare(word1, word1, 0));
+  
     auto endTime = chrono::high_resolution_clock::now();
     auto elapsedTime = chrono::duration_cast<std::chrono::nanoseconds>(endTime - startTime);
-    cout << "A miProcesoAMedir le tomó realizandolo por ejecución: " << elapsedTime.count() << "nanosegundos" <<endl;
+    cout << "A la comparación le tomó realizandolo por ejecución: " << elapsedTime.count() << "nanosegundos\n" <<endl;
     
     //Realizando la comparación en compilación
     startTime = chrono::high_resolution_clock::now();
-    print_result(compare("Las olas del mar rompen suavemente en la orilla mientras la brisa acaricia la pie", "El sol se oculta lentamente detrás de las montañas, pintando el cielo con tonos anaranjados.", 0));
+    print_result(compare("Las olas del mar rompen suavemente en la orilla mientras la brisa acaricia la pie", "Las olas del mar rompen suavemente en la orilla mientras la brisa acaricia la pie", 0));
     //cout <<compare("Las olas del mar rompen suavemente en la orilla mientras la brisa acaricia la pie", "El sol se oculta lentamente detrás de las montañas, pintando el cielo con tonos anaranjados.", 0)<<endl;
     endTime = chrono::high_resolution_clock::now();
     elapsedTime = chrono::duration_cast<std::chrono::nanoseconds>(endTime - startTime);
-    cout << "A miProcesoAMedir le tomó realizandolo por compilación: " << elapsedTime.count() << "nanosegundos" <<endl;
+    cout << "A la comparación le tomó realizandolo por compilación: " << elapsedTime.count() << "nanosegundos\n" <<endl;
 
-    //Verifico que funciona también la función cuando se le pasan textos iguales.
-    print_result(compare(word1, word1, 0));
+    //Verifico que funciona también la función cuando se le pasan textos distintos.
+    print_result(compare(word1, word2, 0));
 }
 
 /*CONCLUSIÓN
