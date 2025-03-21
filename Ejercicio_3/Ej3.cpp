@@ -77,6 +77,7 @@ void list_pop_head(shared_ptr<list_t> list){
 
 void list_pop_tail(shared_ptr<list_t> list){
     if(list_is_empty(list)){return;} 
+    //Hay un solo elemento en la lista
     if(!list->head->next){
         list->head = nullptr;
         list->tail = nullptr;
@@ -97,21 +98,25 @@ void list_pop_tail(shared_ptr<list_t> list){
 }
 
 bool insert(int pos, shared_ptr<list_t> list, int value){
-    
+    //casteo pos a size_t ya que siempre va a ser un valor positivo y sino no puedo realizar la comparación
+    //si es mayor a la posición elimino el último
     if(static_cast<size_t>(pos)> list->size){
         push_back(value, list);
         return false;
     }
     else if(pos == 0){
+        //Tomo el valor 0 como inicio de la lista
         push_front(value, list);
         return true;
     }
     else{
+        //itero sobre la lista hasta el anterior a la posicion donde tengo que insertar así es más fácil acomodar los punteros.
         shared_ptr<node_t> new_node = create_node(value);
         shared_ptr<node_t> curr = list->head;
         for( int i = 0; i<pos-1; i++){
             curr = curr->next;
         }
+        //acomodo punteros
         new_node->next =curr->next;
         curr->next = new_node;
         list->size++;
@@ -145,9 +150,11 @@ bool erase(shared_ptr<list_t> list, int pos){
 }
 
 void print_list(shared_ptr<list_t> list){
+    //itero sobre la lista y voy printeando los valores uno al lado del otro
     shared_ptr<node_t> curr = list->head;
     while(curr){
         if(!curr->next){
+            //cuando llego al final de la lista (que el siguiente apunta a NULL) ya no imprimo con la ->
             cout << curr->value<<endl;
         }
         else{
@@ -187,7 +194,7 @@ int main(){
     cout<<"Se elimina toda la lista"<<endl;
     
     while(list->head){
-        erase(list, 0); //l epongo pos 0 ya que al ir borrando los elementos en el head va a haber uno distinto en cada iteración
+        erase(list, 0); //le pongo pos 0 ya que al ir borrando los elementos en el head va a haber uno distinto en cada iteración
         if(list->head){
             print_list(list);
         }
