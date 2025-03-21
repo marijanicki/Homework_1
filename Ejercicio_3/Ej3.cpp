@@ -17,7 +17,6 @@ struct list_t{
 };
 
 shared_ptr<node_t> create_node(int value){
-    //tengo que verificar que se haya creado el nodo?
     shared_ptr<node_t> new_node = make_shared<node_t>();
     new_node->value = value;
     new_node->next = nullptr;
@@ -66,6 +65,7 @@ void list_pop_head(shared_ptr<list_t> list){
     if(!list->head->next){
         list->head = nullptr;
         list->tail = nullptr;
+        list->size--;
         return;
     }
 
@@ -76,7 +76,7 @@ void list_pop_head(shared_ptr<list_t> list){
 }
 
 void list_pop_tail(shared_ptr<list_t> list){
-    if(list_is_empty(list)){return;} //preguntar si no pongo return NULL ya q no hago nada
+    if(list_is_empty(list)){return;} 
     if(!list->head->next){
         list->head = nullptr;
         list->tail = nullptr;
@@ -86,7 +86,9 @@ void list_pop_tail(shared_ptr<list_t> list){
 
     shared_ptr<node_t> curr = list->head;
     while(curr->next->next){
-        //Voy iterando sobre la lista hasta llegar al anterior del ultimo
+        //Voy iterando sobre la lista hasta llegar al anterior del ultimo así 
+        //puedo reacomodar los punteros de manera sencilla y no tengo que 
+        //volver a recorrer para 
         curr = curr->next;
     }
     curr->next = nullptr; //así elimino el último nodo, en vez de apuntar a al tail a punta a null indicando que es el nuevo tail
@@ -158,16 +160,45 @@ void print_list(shared_ptr<list_t> list){
 
 int main(){
     shared_ptr<list_t> list= create_list();
+    cout<<"Se inserta un elemento en una posición mayor al largo de la lista:"<<endl;
     insert(1, list, 5);
     print_list(list);
+    cout<<"Se inserta un elemento al final de la lista"<<endl;
     push_back(8,list);
     print_list(list);
+    cout<<"Se ingresa un elemento en el inicio de la lista"<<endl;
     push_front(6,list);
     print_list(list);
+    cout<<"Se quiere eliminar un elemento en una posición mayor al largo de la lista"<<endl;
     erase(list, 3);
     print_list(list);
-    insert(5,list,9);
+    cout<<"Se inserta un elemento en la mitad de la lista"<<endl;
+    insert(1,list,9);
     print_list(list);
+    cout<<"Se elimina la cabeza de la lista"<<endl;
     erase(list,0);
+    print_list(list);
+    cout<<"Se inserta un elemento al final de la lista"<<endl;
+    insert(2, list, 4);
+    print_list(list);
+    cout<<"Se elimina el último elemento de la lista"<<endl;
+    erase(list, 2);
+    print_list(list);
+    cout<<"Se elimina toda la lista"<<endl;
+    
+    while(list->head){
+        erase(list, 0); //l epongo pos 0 ya que al ir borrando los elementos en el head va a haber uno distinto en cada iteración
+        if(list->head){
+            print_list(list);
+        }
+        else{
+            cout<<"NULL"<<endl;
+        }
+    }
+    cout<<"Se intenta eliminar un elemento con la lista vacia (no se imprime nada)"<<endl;
+    erase(list,0);
+    print_list(list);
+    cout<<"Despues de dejar a la lista vacia se pueden insertar elementos igual"<<endl;
+    insert(1,list,3);
     print_list(list);
 } 

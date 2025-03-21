@@ -1,4 +1,3 @@
-#pragma once
 #include <iostream>
 #include <memory>
 
@@ -40,7 +39,8 @@ void push_back(int value, shared_ptr<list_t> list);
  * Elimina un elemento del principio de la lista.
  * Pre-condiciones: La lista existe.
  * Post-condiciones: Saca un nodo del principio de la lista
- * si la lista no está vacia. Devuelve NULL si está vacia.
+ * si la lista no está vacia. Si está vacia no hace nada y retorna.
+ * 
  */
 void list_pop_head(shared_ptr<list_t> list);
 
@@ -48,7 +48,7 @@ void list_pop_head(shared_ptr<list_t> list);
  * Elimina un elemento del final de la lista.
  * Pre-condiciones: La lista existe.
  * Post-condiciones: Saca un nodo del final de la lista
- * si la lista no está vacia. Devuelve NULL si está vacia.
+ * si la lista no está vacia. Si está vacia no hace nada y retorna.
  */
 void list_pop_tail(shared_ptr<list_t> list);
 
